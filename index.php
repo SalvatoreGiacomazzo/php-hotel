@@ -39,22 +39,15 @@ $hotels = [
 
 ];
 
-
-
-
-
-
-
-
-
-
-
-
+/*Stampare tutti i nostri hotel con tutti i dati disponibili.
+Iniziate in modo graduale.
+Prima stampate in pagina i dati, senza preoccuparvi dello stile.
+Dopo aggiungete Bootstrap e mostrate le informazioni con una tabella.
+Bonus:
+1 - Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio.
+2 - Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore)
+*/
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +56,11 @@ $hotels = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Hotel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-
+    <h1 class="text-success">hello bootstrap</h1>
 </body>
 
 </html>
