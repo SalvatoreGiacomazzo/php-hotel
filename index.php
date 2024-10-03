@@ -63,11 +63,20 @@ Bonus:
 
 <body>
 
-    <div class="container h-50 w-75">
+    <div class="container h-50 w-75 mt-5">
 
         <table class="table table-dark">
-            <?php foreach ($hotels as $hotel) { ?>
+            <thead>
 
+                <tr>
+                    <?php foreach ($hotels[0] as $key => $value) { ?>
+                        <th scope="col" class="text-warning"> <?= $key  ?></th>
+                    <?php } ?>
+                </tr>
+
+            </thead>
+
+            <?php foreach ($hotels as $hotel) { ?>
 
                 <tbody>
                     <tr>
