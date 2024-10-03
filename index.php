@@ -61,47 +61,30 @@ Bonus:
 
 
 <body>
-    <div class="container w-75">
-        <table class="table table-dark">
-            <thead>
-                <tr>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="list-group">
+                    <?php foreach ($hotels as $hotel) { ?>
+                        <h2> <?= $hotel["name"];    ?> </h2>
+                        <li class="list-group-item">
+                            Descrizione: <?= $hotel["description"] ?>
+                        </li>
+                        <li class="list-group-item">
+                            Possibilità di parcheggio: <?= $hotel["parking"] ?>
+                        </li>
 
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+                        <li class="list-group-item">
+                            Voto: <?= $hotel["vote"] ?> /5
+                        </li>
 
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
-        </table>
-
-
+                        <li class="list-group-item">
+                            Distanza dal centro: <?= $hotel["distance_to_center"] ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 
