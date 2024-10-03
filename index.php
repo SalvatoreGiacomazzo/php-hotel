@@ -39,6 +39,7 @@ $hotels = [
 
 ];
 
+
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
 Iniziate in modo graduale.
 Prima stampate in pagina i dati, senza preoccuparvi dello stile.
@@ -61,31 +62,42 @@ Bonus:
 
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <ul class="list-group">
-                    <?php foreach ($hotels as $hotel) { ?>
-                        <h2> <?= $hotel["name"];    ?> </h2>
-                        <li class="list-group-item">
-                            Descrizione: <?= $hotel["description"] ?>
-                        </li>
-                        <li class="list-group-item">
-                            Possibilità di parcheggio: <?= $hotel["parking"] ?>
-                        </li>
 
-                        <li class="list-group-item">
-                            Voto: <?= $hotel["vote"] ?> /5
-                        </li>
+    <div class="container h-50 w-75">
 
-                        <li class="list-group-item">
-                            Distanza dal centro: <?= $hotel["distance_to_center"] ?>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </div>
+        <table class="table table-dark">
+            <?php foreach ($hotels as $hotel) { ?>
+
+
+                <tbody>
+                    <tr>
+                        <th scope="row" class="w-20"> <?= $hotel["name"]; ?></th>
+                        <td><?= $hotel["description"]; ?></td>
+
+
+                        <td>
+                            <?php if ($hotel['parking']) {
+                                echo "Disponibile";
+                            } else {
+                                echo "Non Disponibile";
+                            } ?>
+                        </td>
+
+                        <td><?= $hotel["vote"]; ?></td>
+                        <td><?= $hotel["distance_to_center"]; ?></td>
+                    </tr>
+
+
+                <?php } ?>
+                </tbody>
+
+        </table>
+
     </div>
+
+</body>
+
+
 </body>
 
 </html>
