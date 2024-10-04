@@ -76,69 +76,70 @@ Bonus:
 
 
 <body>
-
     <div class="container h-50 w-75 mt-5">
-        <div class="row-12 d-flex">
+        <div class="row">
+            <!-- parking form -->
             <div class="col-6">
                 <form class="form-check" action="index.php" method="GET">
                     <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
                     <label class="form-check-label" for="parkingFilter">
                         Filtra parcheggio
                     </label>
-                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset </button>
-            </div>
-            <div class="form-group col-6">
-                <label for="exampleFormControlSelect1">Filtra per voto</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div
-
+                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset</button>
                 </form>
+            </div>
+
+            <!-- rating form -->
+            <div class="col-6">
+                <form class="form-check" action="index.php" method="GET">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filtra per voto</label>
+                        <input type="number" min="1" max="5" class="form-control" name="rating" id="rating">
+                    </div>
+                </form>
+            </div>
         </div>
-        <table class="table table-dark">
-            <thead>
 
-                <tr>
-                    <?php foreach ($hotels[0] as $key => $value) { ?>
-                        <th scope="col" class="text-warning"> <?= $key  ?></th>
-                    <?php } ?>
-                </tr>
+        <div class="row">
+            <table class="table table-dark">
+                <thead>
 
-            </thead>
-
-            <?php foreach ($filteredByParking as $hotel) { ?>
-
-                <tbody>
                     <tr>
-                        <th scope="row" class="w-20"> <?= $hotel["name"]; ?></th>
-                        <td><?= $hotel["description"]; ?></td>
-
-
-                        <td>
-                            <?php if ($hotel['parking']) {
-                                echo "Disponibile";
-                            } else {
-                                echo "Non Disponibile";
-                            } ?>
-                        </td>
-
-                        <td><?= $hotel["vote"]; ?>/5</td>
-                        <td><?= $hotel["distance_to_center"]; ?>km</td>
+                        <?php foreach ($hotels[0] as $key => $value) { ?>
+                            <th scope="col" class="text-warning"> <?= $key  ?></th>
+                        <?php } ?>
                     </tr>
 
-                <?php } ?>
+                </thead>
 
-                </tbody>
+                <?php foreach ($filteredByParking as $hotel) { ?>
 
-        </table>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="w-20"> <?= $hotel["name"]; ?></th>
+                            <td><?= $hotel["description"]; ?></td>
 
+
+                            <td>
+                                <?php if ($hotel['parking']) {
+                                    echo "Disponibile";
+                                } else {
+                                    echo "Non Disponibile";
+                                } ?>
+                            </td>
+
+                            <td><?= $hotel["vote"]; ?>/5</td>
+                            <td><?= $hotel["distance_to_center"]; ?>km</td>
+                        </tr>
+
+                    <?php } ?>
+
+                    </tbody>
+
+            </table>
+        </div>
     </div>
-
+    </div>
 </body>
 
 
