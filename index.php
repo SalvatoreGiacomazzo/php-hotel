@@ -39,6 +39,11 @@ $hotels = [
 
 ];
 
+if (isset($_GET['parkingFilter'])) {
+    var_dump("checked");
+} else {
+    var_dump("not checked");
+}
 
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
 Iniziate in modo graduale.
@@ -64,8 +69,13 @@ Bonus:
 <body>
 
     <div class="container h-50 w-75 mt-5">
-        <form active="index.php" method="$_GET" class="form-check">
-            <button type="submit" class="btn btn-primary">Filtra parcheggio</button>
+        <form class="form-check" action="index.php" method="GET">
+            <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
+            <label class="form-check-label" for="parkingFilter">
+                Filtra parcheggio
+            </label>
+            <button type="submit" class="btn btn-primary mt-3">Submit/Reset </button>
+
         </form>
         <table class="table table-dark">
             <thead>
