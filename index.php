@@ -50,7 +50,7 @@ if (isset($_GET['parkingFilter'])) {              //SE la richiesta get della ch
     }
 } else {
     var_dump("non filtrati");
-    $filteredByParking = $hotels;        //Se tutto ciò non avviene, non viene creato un nuovo array
+    $filteredByParking = $hotels;        //Se tutto ciò non avviene, non viene creato un nuovo
 }
 
 
@@ -78,14 +78,28 @@ Bonus:
 <body>
 
     <div class="container h-50 w-75 mt-5">
-        <form class="form-check" action="index.php" method="GET">
-            <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
-            <label class="form-check-label" for="parkingFilter">
-                Filtra parcheggio
-            </label>
-            <button type="submit" class="btn btn-primary mt-3">Submit/Reset </button>
+        <div class="row-12 d-flex">
+            <div class="col-6">
+                <form class="form-check" action="index.php" method="GET">
+                    <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
+                    <label class="form-check-label" for="parkingFilter">
+                        Filtra parcheggio
+                    </label>
+                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset </button>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleFormControlSelect1">Filtra per voto</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div
 
-        </form>
+                </form>
+        </div>
         <table class="table table-dark">
             <thead>
 
