@@ -38,11 +38,13 @@ $hotels = [
     ],
 
 ];
+$filteredByParking = [];
+
 
 if (isset($_GET['parkingFilter'])) {
-    var_dump("checked");
+    var_dump("filtrati per parcheggio");
 } else {
-    var_dump("not checked");
+    var_dump("non filtrati");
 }
 
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
