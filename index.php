@@ -54,6 +54,12 @@ if (isset($_GET['parkingFilter'])) {              //SE la richiesta get della ch
 }
 
 
+if (isset($_GET['rating']) && $_GET['rating'] >= 1) {
+    var_dump("filtrati per voto");
+} else {
+    var_dump("non filtrati per voto");
+}
+
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
 Iniziate in modo graduale.
 Prima stampate in pagina i dati, senza preoccuparvi dello stile.
@@ -78,66 +84,71 @@ Bonus:
 <body>
     <div class="container h-50 w-75 mt-5">
         <div class="row">
-            <!-- parking form -->
-            <div class="col-6">
-                <form class="form-check" action="index.php" method="GET">
+            <!-- Inizio del form unificato -->
+            <form class="form-check" action="index.php" method="GET">
+                <!-- rarking form-->
+                <div class="col-5">
                     <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
                     <label class="form-check-label" for="parkingFilter">
                         Filtra parcheggio
                     </label>
-                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset</button>
-                </form>
-            </div>
+                </div>
 
-            <!-- rating form -->
-            <div class="col-6">
-                <form class="form-check" action="index.php" method="GET">
+                <!-- rating form -->
+                <div class="col-5">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Filtra per voto</label>
                         <input type="number" min="1" max="5" class="form-control" name="rating" id="rating">
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <!-- button -->
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset</button>
+                </div>
+            </form>
+
         </div>
+    </div>
 
-        <div class="row">
-            <table class="table table-dark">
-                <thead>
+    <div class="row">
+        <table class="table table-dark">
+            <thead>
 
+                <tr>
+                    <?php foreach ($hotels[0] as $key => $value) { ?>
+                        <th scope="col" class="text-warning"> <?= $key  ?></th>
+                    <?php } ?>
+                </tr>
+
+            </thead>
+
+            <?php foreach ($filteredByParking as $hotel) { ?>
+
+                <tbody>
                     <tr>
-                        <?php foreach ($hotels[0] as $key => $value) { ?>
-                            <th scope="col" class="text-warning"> <?= $key  ?></th>
-                        <?php } ?>
+                        <th scope="row" class="w-20"> <?= $hotel["name"]; ?></th>
+                        <td><?= $hotel["description"]; ?></td>
+
+
+                        <td>
+                            <?php if ($hotel['parking']) {
+                                echo "Disponibile";
+                            } else {
+                                echo "Non Disponibile";
+                            } ?>
+                        </td>
+
+                        <td><?= $hotel["vote"]; ?>/5</td>
+                        <td><?= $hotel["distance_to_center"]; ?>km</td>
                     </tr>
 
-                </thead>
+                <?php } ?>
 
-                <?php foreach ($filteredByParking as $hotel) { ?>
+                </tbody>
 
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="w-20"> <?= $hotel["name"]; ?></th>
-                            <td><?= $hotel["description"]; ?></td>
-
-
-                            <td>
-                                <?php if ($hotel['parking']) {
-                                    echo "Disponibile";
-                                } else {
-                                    echo "Non Disponibile";
-                                } ?>
-                            </td>
-
-                            <td><?= $hotel["vote"]; ?>/5</td>
-                            <td><?= $hotel["distance_to_center"]; ?>km</td>
-                        </tr>
-
-                    <?php } ?>
-
-                    </tbody>
-
-            </table>
-        </div>
+        </table>
+    </div>
     </div>
     </div>
 </body>
