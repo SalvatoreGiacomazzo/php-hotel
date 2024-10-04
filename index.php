@@ -64,7 +64,9 @@ Bonus:
 <body>
 
     <div class="container h-50 w-75 mt-5">
-
+        <form active="index.php" method="$_GET" class="form-check">
+            <button type="submit" class="btn btn-primary">Filtra parcheggio</button>
+        </form>
         <table class="table table-dark">
             <thead>
 
@@ -92,8 +94,8 @@ Bonus:
                             } ?>
                         </td>
 
-                        <td><?= $hotel["vote"]; ?></td>
-                        <td><?= $hotel["distance_to_center"]; ?></td>
+                        <td><?= $hotel["vote"]; ?>/5</td>
+                        <td><?= $hotel["distance_to_center"]; ?>km</td>
                     </tr>
 
 
