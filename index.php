@@ -41,11 +41,18 @@ $hotels = [
 $filteredByParking = [];
 
 
-if (isset($_GET['parkingFilter'])) {
-    var_dump("filtrati per parcheggio");
+if (isset($_GET['parkingFilter'])) {              //SE la richiesta get della checkbox arriva
+    var_dump("filtrati per parcheggio");         //fai stampare la scritta
+    foreach ($hotels as $hotel) {            //per ogni hotel in hotels, se la chiave dell'hotel 'parking' è true, pushalo nell'array $filteredByParking
+        if ($hotel["parking"] == true) {
+            array_push($filteredByParking, $hotel);
+        }
+    }
 } else {
     var_dump("non filtrati");
+    $filteredByParking = $hotels;        //Se tutto ciò non avviene, non viene creato un nuovo array
 }
+
 
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
 Iniziate in modo graduale.
@@ -90,7 +97,7 @@ Bonus:
 
             </thead>
 
-            <?php foreach ($hotels as $hotel) { ?>
+            <?php foreach ($filteredByParking as $hotel) { ?>
 
                 <tbody>
                     <tr>
@@ -110,8 +117,8 @@ Bonus:
                         <td><?= $hotel["distance_to_center"]; ?>km</td>
                     </tr>
 
-
                 <?php } ?>
+
                 </tbody>
 
         </table>
