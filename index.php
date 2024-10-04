@@ -38,31 +38,38 @@ $hotels = [
     ],
 
 ];
-$filteredByParking = [];
+$filtered = [];
 
 
 if (isset($_GET['parkingFilter'])) {              //SE la richiesta get della checkbox arriva
     var_dump("filtrati per parcheggio");         //fai stampare la scritta
     foreach ($hotels as $hotel) {            //per ogni hotel in hotels, se la chiave dell'hotel 'parking' è true, pushalo nell'array $filteredByParking
         if ($hotel["parking"] == true) {
-            array_push($filteredByParking, $hotel);
+            array_push($filtered, $hotel);
         }
     }
 } else {
     var_dump("non filtrati");
-    $filteredByParking = $hotels;        //Se tutto ciò non avviene, non viene creato un nuovo
+    $filtered = $hotels;        //Se tutto ciò non avviene, non viene creato un nuovo
 }
 
 
-if (isset($_GET['rating']) && $_GET['rating'] >= 1) {
-    var_dump("filtrati per voto");
+if (isset($_GET['rating']) && $_GET['rating'] >= 1) {         //SE la richiesta della selezione del voto arriva ed è maggiore e uguale a 1
+    var_dump("filtrati per voto:" . $_GET["rating"]);
+    $highRated = [];
+    foreach ($filtered as $hotel) {                                  //per ogni hotel in $filtered, pusha nel nuovo array ogni hotel se il suo voto
+        if ($hotel["vote"] >= $_GET['rating']) {                     //è maggiore o uguale alla richiesta dell'utente  
+            array_push($highRated, $hotel);
+        }
+    }
+    $filtered = $highRated;
 } else {
     var_dump("non filtrati per voto");
 }
 
 /*Stampare tutti i nostri hotel con tutti i dati disponibili.
 Iniziate in modo graduale.
-Prima stampate in pagina i dati, senza preoccuparvi dello stile.
+Prima stampate in pagina i dati, senza preoccuparvi dello stile.>
 Dopo aggiungete Bootstrap e mostrate le informazioni con una tabella.
 Bonus:
 1 - Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio.
@@ -83,35 +90,35 @@ Bonus:
 
 <body>
     <div class="container h-50 w-75 mt-5">
-        <div class="row">
-            <!-- Inizio del form unificato -->
-            <form class="form-check" action="index.php" method="GET">
-                <!-- rarking form-->
-                <div class="col-5">
-                    <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
-                    <label class="form-check-label" for="parkingFilter">
-                        Filtra parcheggio
-                    </label>
+
+        <!-- Inizio del form unificato -->
+        <form class="form-check" action="index.php" method="GET">
+            <!-- rarking form-->
+            <div class="col-5">
+                <input class="form-check-input" type="checkbox" id="parkingFilter" name="parkingFilter">
+                <label class="form-check-label" for="parkingFilter">
+                    Filtra parcheggio
+                </label>
+            </div>
+
+            <!-- rating form -->
+            <div class="col-5">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Filtra per voto</label>
+                    <input type="number" min="1" max="5" class="form-control" name="rating" id="rating">
                 </div>
+            </div>
 
-                <!-- rating form -->
-                <div class="col-5">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Filtra per voto</label>
-                        <input type="number" min="1" max="5" class="form-control" name="rating" id="rating">
-                    </div>
-                </div>
+            <!-- button -->
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary mt-3">Submit/Reset</button>
+            </div>
+        </form>
 
-                <!-- button -->
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary mt-3">Submit/Reset</button>
-                </div>
-            </form>
 
-        </div>
-    </div>
 
-    <div class="row">
+
+
         <table class="table table-dark">
             <thead>
 
@@ -123,7 +130,7 @@ Bonus:
 
             </thead>
 
-            <?php foreach ($filteredByParking as $hotel) { ?>
+            <?php foreach ($filtered as $hotel) { ?>
 
                 <tbody>
                     <tr>
@@ -149,7 +156,7 @@ Bonus:
 
         </table>
     </div>
-    </div>
+
     </div>
 </body>
 
